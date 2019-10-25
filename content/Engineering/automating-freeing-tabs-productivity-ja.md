@@ -4,14 +4,14 @@ Slug: automate-browsing-free-tabs-save-time-be-productive-en
 Lang: ja
 Tags: python; automation; lifehack; requests; beautifulsoup; xoxzo.cloudpy;
 Author: Josef Monje
-Summary: ブラウザで多くの時間を費やしています。 時々、ページの変更を監視するなど、いくつかの簡単なアクティビティ専用のブラウザタブをいくつか用意しています。 しかし、これらの一見小さなアクティビティは最終的にブラウザのタブの多くを占有することになり、その結果、より重要なことをして生産性を維持することから私たちをそらします。 この投稿では、簡単なスクリプトを作成してKickstarterプロジェクトの取引を監視するプロセスを順を追って説明します。 これは、初心者または非プログラマを対象としています。
+Summary: 私達は、ブラウザで多くの時間を費やしています。 時には、ページの変更を監視したりというような、シンプルな用事のためにいくつかのタブを当てたりもします。 しかし、一見シンプルな用事が、最終的にはブラウザのタブを多く独占し、その結果、もっと重要なことに取り組んで生産性を維持する妨げになったりもするのです。 この投稿では、簡単なスクリプトを作成してKickstarterプロジェクトの取り扱いを監視するプロセスを順を追って説明します。 初心者または非プログラマーを対象としています。
 
 
-## Tab Overload Problems
+## タブ過負荷の問題
 
-We spend a lot of time in our browser. Sometimes we dedicate a few browser tabs to do some simple repetitive activity like monitoring a certain page for changes. Eventually, we end up with a lot of open tabs for some forgotten purpose in the past. Maintaining a lot of tabs can sometimes even prevent us from quitting our browser application just because there's something "important" about those tabs. I admit, this used to happen to me.
+私達は、ブラウザで多くの時間を費やしています。 時には、ページの変更を監視したりというような、シンプルな用事のためにいくつかのタブを当てたりもします。 最終的には、すでに忘れていたことのためにまで、多くのタブを開いたままということも。 多くのタブを開いておくと、そのタブに「重要な」何かがあるようで、ブラウザアプリケーション自体を終了できなくなることさえあります。 そうです、これは私自身の経験です。
 
-Browsers take up a lot of precious computing resources. The more tabs we keep, the less our computer can perform for other tasks. The problem eventually accumulates and we end up with a slow computer, preventing or slowing us down from accomplishing more important things and maintaining our productivity. Who wants a slow browser or computer? I sure wouldn't want to have to take care of my browser and its tabs like a pet or a plant, and grow many open tabs.
+ブラウザは貴重なコンピューティング・リソースを多く占有します。 開きっぱなしのタブが多いほど、コンピューターが他のタスクを実行できる容量が少なくなります。 問題は最終的に溜まりに溜まって、コンピューターの処理速度が遅くなり、もっと重要なことをやり遂げたり、生産性を維持したりすることができなくなるのです。 動きの遅いブラウザーや遅いコンピューターなんて、誰がほしいと思いますか？ ブラウザやタブを、まるでペットや植物のように世話をして成長させ、たくさん開かせたいなんて、願うはずがありません。
 
 ## A Better Way
 
