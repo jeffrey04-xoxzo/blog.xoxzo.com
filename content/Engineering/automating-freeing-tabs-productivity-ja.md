@@ -11,21 +11,37 @@ Summary: 私達は、ブラウザで多くの時間を費やしています。 �
 
 私達は、ブラウザで多くの時間を費やしています。 時には、ページの変更を監視したりというような、シンプルな用事のためにいくつかのタブを当てたりもします。 最終的には、すでに忘れていたことのためにまで、多くのタブを開いたままということも。 多くのタブを開いておくと、そのタブに「重要な」何かがあるようで、ブラウザアプリケーション自体を終了できなくなることさえあります。 そうです、これは私自身の経験です。
 
-ブラウザは貴重なコンピューティング・リソースを多く占有します。 開きっぱなしのタブが多いほど、コンピューターが他のタスクを実行できる容量が少なくなります。 問題は最終的に溜まりに溜まって、コンピューターの処理速度が遅くなり、もっと重要なことをやり遂げたり、生産性を維持したりすることができなくなるのです。 動きの遅いブラウザーや遅いコンピューターなんて、誰がほしいと思いますか？ ブラウザやタブを、まるでペットや植物のように世話をして成長させ、たくさん開かせたいなんて、願うはずがありません。
+ブラウザは貴重なコンピューティング・リソースを多く占有します。 開きっぱなしのタブが多いほど、コンピューターが他のタスクを実行できる容量が少なくなります。 問題は最終的に溜まりに溜まって、コンピューターの処理速度が遅くなり、もっと重要なことをやり遂げたり、生産性を維持したりすることができなくなるのです。 動きの遅いブラウザーや遅いコンピューターなんて、誰がほしいと思いますか？ ブラウザやタブを、まるでペットや植物のように世話をして成長させ、たくさん開かせたいなんて、願う人はいません。
 
-## A Better Way
+## 改善案
 
-> _"There must be a better way!"_
+> _"絶対に改善案はある!"_
 
--- Raymond Hettinger, Python core developer
+-- Raymond Hettinger, Python コア開発者
 
-As Raymond Hettinger, one of my favourite Python developers, would say _"There must be a better way!"_. We can keep those distracting tabs and slow browsers from slowing us down. For this example, I chose to write a script to watch a Kickstarter project so I can get better deals just in case they become available. Beginners or non-programmers can use this as a simple #lifehack or as a starting point and apply it to their own use cases like waiting for that new anime or manga episode.
+私が好きなPython開発者の1人、Raymond Hettinger (レイモンド・ヘッティンガー)なら、「絶対に改善案はある！」_と言うでしょう。 
+こんなうっとおしいタブや動きの遅いブラウザに、邪魔されないようにすることは可能なんです。
+この問題に対して、私は、Kickstarterプロジェクトが利用可能になった場合に備えて、Kickstarterプロジェクトを監視するスクリプトを作成することにしました。
+初心者や非プログラマーの方には、これを単純な #lifehack または第一歩となり、新しいアニメや漫画のエピソードを待つ、といった、自分だけのユースケースにも使うことができるんです。
 
-Personally, when I see some cool [Kickstarter](https://www.kickstarter.com/) project, I'm usually not lucky or fast enough to get the limited early bird deals. In this post, I'll walk through the process of creating a simple script to watch out for early bird slots in case they become available. This can happen when a supporter suddenly changes their mind. It can happen. In which case, we would suddenly see something like `Limited (1 left of 10)` in the page and it probably wouldn't last very long before someone takes it. It would be a total waste to keep an open tab and keep refreshing it every once in a while to do this task so we're going to write a Python script. We'll be working on the command-line as well as with our favourite text editor. Let's begin!
 
-## Writing Our Python Script
+個人的に、クールな[Kickstarter](https://www.kickstarter.com/）プロジェクトを見ると、早いもの勝ちに間に合わなかったような、アンラッキーな気分になります。今回は、簡単なスクリプトを作成して、早いもの勝ちのスロットが利用可能になった場合に注意喚起するプロセスについて説明します。
+これは、サポーターの気が前触れなしに変わったときに起こりますし、 起こり得るんです。
+その場合、ページに突然「限定（10件中1件目）」などと表示され、すぐに誰かに取られてしまうんです。
+だからといって、タブを開いたままにして、時々ページ更新し続けるのは無駄なことです。
+そこで、Pythonスクリプトを作成します。 コマンドラインだけでなく、お好きなテキストエディターでも作業を行います。 
 
-First, let's make sure that `python` and `pip` are installed. You can test the `Python` and `pip` commands in the Windows Command Prompt or macOS/Linux Terminal to see if it works or if you get errors. You can download the latest Python version [here](https://www.python.org/downloads/) if you haven't downloaded it yet. It should be some version of `Python 3`. Here's a helpful page in [MakeUseOf](https://www.makeuseof.com/tag/install-pip-for-python/) to help you if you need to install or troubleshoot some error.
+さぁ、始めましょう！
+
+
+
+
+## Python Script を書く
+
+まずは、 `python`と` pip`がインストールされていることを確認しましょう。 
+Windowsコマンドプロンプト または macOS / Linuxターミナルで「Python」および「pip」コマンドをテストして、動作するか、エラーが発生するかを確認できます。 まだダウンロードされていない場合は、[最新のPythonバージョン](https://www.python.org/downloads/）をダウンロードできます。 `Python 3`の何らかのバージョンである必要があります。 
+インストールや、エラーのトラブルシューティングの際に役立つサイトは[MakeUseOf](https://www.makeuseof.com/tag/install-pip-for-python/）（英語）
+
 
 Then once we have those commands, we'll make a file for our script. I named my file `kickstarter-watcher.py`, Python files end with `py` extension. You can put it anywhere like your Desktop, it doesn't matter right now. Navigate to your file's folder in your Command Prompt/Terminal. Then open the file with your favourite text editor. We can now start writing our code, test it and learn some Python along the way.
 
