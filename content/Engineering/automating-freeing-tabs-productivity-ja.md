@@ -40,10 +40,23 @@ Summary: 私達は、ブラウザで多くの時間を費やしています。 �
 
 まずは、 `python`と` pip`がインストールされていることを確認しましょう。 
 Windowsコマンドプロンプト または macOS / Linuxターミナルで「Python」および「pip」コマンドをテストして、動作するか、エラーが発生するかを確認できます。 まだダウンロードされていない場合は、[最新のPythonバージョン](https://www.python.org/downloads/）をダウンロードできます。 `Python 3`の何らかのバージョンである必要があります。 
+
 インストールや、エラーのトラブルシューティングの際に役立つサイトは[MakeUseOf](https://www.makeuseof.com/tag/install-pip-for-python/）（英語）
 
 
 Then once we have those commands, we'll make a file for our script. I named my file `kickstarter-watcher.py`, Python files end with `py` extension. You can put it anywhere like your Desktop, it doesn't matter right now. Navigate to your file's folder in your Command Prompt/Terminal. Then open the file with your favourite text editor. We can now start writing our code, test it and learn some Python along the way.
+
+コマンド `python` と `pip` を取得したら、スクリプト用のファイルを作成しましょう。
+例として、私はファイルに「kickstarter-watcher.py」という名前を付けてみました。
+Pythonファイルは「.py」拡張子で終わってください。
+デスクトップなど、どこにでも置くことができますが、今は関係ありません。
+コマンドプロンプト/ターミナルでファイルのフォルダーに移動します。
+次に、お気に入りのテキストエディターでファイルを開きます。
+
+これで、コードの記述を開始し、テストして、途中でPythonを学ぶことができます。
+コマンド `python` と `pip` を取得したら、スクリプト用のファイルを作成しましょう。ファイルに「kickstarter-watcher.py」という名前を付けました。Pythonファイルは「py」拡張子で終わります。 デスクトップのようにどこにでも置くことができますが、今は関係ありません。 コマンドプロンプト/ターミナルでファイルのフォルダーに移動します。 次に、お気に入りのテキストエディターでファイルを開きます。 これで、コードの記述を開始し、テストして、途中でPythonを学ぶことができます。
+
+
 
 ### Using `sys`
 
