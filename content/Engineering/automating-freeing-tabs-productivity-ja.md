@@ -75,32 +75,34 @@ else:
 * `sys.argv[1:]` slices the list and returns a new one, starting from the index `1`, which is actually the second one because the first one is index `0`. The value is then assigned to a variable `urls`.
 * `len(urls)` gives us the number of elements in our url list. If no URLs were given, a message is printed.
 
-To use our script we can just run in the command-line:
+このスクリプトを使うには、コマンドラインに次のように入力して実行します。
 
 ```
 python kickstarter-watcher.py
 ```
 
-This should show us our message to provide a Kickstarter project URL. Let's test it with a URL.
+これで、 provide a Kickstarter project URL つまり Kickstarter project のURLを入力してくださいとメッセージがあるはずです。
+URLを併記して試してみましょう。
 
 ```
 python kickstarter-watcher.py https://www.kickstarter.com
 ```
 
-For now, it just prints the URL. Later, we'll do some things with it. Next, we'll write a few functions to do what we want:
+今は、URLを表示するだけです。
+後でこれは使いますが、次にやりたいことを実行させるためのファンクションを書いてみましょう。
 
-1. Download the HTML page in the URL
-2. Get the parts that we want from the HTML
+1. 該当のURLにあるHTMLページのダウンロード
+2. そのHTMLのほしい部分を抜き出す
 
-### Using `requests`
+### `requests` を使う
 
-To download the URL, we'll use the `requests` library, which makes doing this super simple. In the command-line type:
+URLのダウンロードには、作業を超簡単にするため `requests` ライブラリを使います。 コマンドラインにこう打ち込んでください。
 
 ```
 pip install requests
 ```
 
-You should see that it will be downloaded to your computer and we can use it in our script.
+自分のコンピューターにダウンロードされ、自分のスクリプト中で使えるようになるのがわかるはずです。
 
 ```python
 import sys
@@ -131,12 +133,25 @@ for url in urls:
         print(e)
 ```
 
-* `get_url()` is a function that accepts the URL, we print it to check what page the script is browsing.
-* `requests.get(url)`  here we use `requests` to send a [`GET`](https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol#Request_methods) request to the URL and then assign the result to the `response` variable.
-* [`response.ok` ](http://docs.python-requests.org/en/master/api/#requests.Response.ok) is used to check if our request went through. Then either the HTML content of the response is returned, or an error message is printed and nothing is returned.
 * `for url in urls:` uses the list of URLs we provided when we ran the script and loops through each of them. The indented codeblock below it is executed for each and each execution uses each `url` in the list.
 * `try: ... except:` catches any kind of `Exception` or error, which allows us to handle it and our code will continue running. It would be best if we can specify the exceptions here so we can handle them individually. For now, we print it so we can find out what they might be.
 * We call`get_url()` inside this block, and if there's content, we print it for now. If there's an error, we also print it.
+
+* `get_url（）`はURLを受け入れる関数で、スクリプトが参照しているページを確認するために表示します。
+* `requests.get（URL）`ここでは、URLに[ `GET`](https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol#Request_methods）リクエストを送信するために`requests`を使用し、その後に結果を`response`変数に代入します。
+* [ `response.ok`](http://docs.python-requests.org/en/master/api/#requests.Response.ok）は、自分のリクエストが通過したかどうかを確認するために使用されます。すると、応答としてHTMLコンテンツが返されるか、何も応答なくエラーメッセージが出力されるかになります。
+
+
+* `for url in urls：`は、スクリプトの実行時に指定したURLのリストを使用し、各URLをループします。その下にインデントコードブロックは、それぞれに実行され、各実行は、リスト内の各 `url`を使用しています。
+*「try：... except：」は、あらゆる種類の「例外」またはエラーをキャッチします。これにより、それを処理でき、コードの実行が継続されます。我々はそれらを個別に扱うことができるように、我々はここで例外を指定することができれば最高だろう。今のところ、それが何であるかを見つけることができるように、それを印刷します。
+*このブロック内で `get_url（）`を呼び出し、コンテンツがある場合は、今のところ印刷します。エラーがある場合、我々はまた、それを印刷します。
+
+
+
+
+
+
+
 
 When we run this code, it just prints the HTML content from the page, or the error if any:
 
