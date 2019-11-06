@@ -133,16 +133,17 @@ for url in urls:
         print(e)
 ```
 
-* `for url in urls:` uses the list of URLs we provided when we ran the script and loops through each of them. The indented codeblock below it is executed for each and each execution uses each `url` in the list.
-* `try: ... except:` catches any kind of `Exception` or error, which allows us to handle it and our code will continue running. It would be best if we can specify the exceptions here so we can handle them individually. For now, we print it so we can find out what they might be.
+
 * We call`get_url()` inside this block, and if there's content, we print it for now. If there's an error, we also print it.
 
 * `get_url（）`はURLを受け入れる関数で、スクリプトが参照しているページを確認するために表示します。
 * `requests.get（URL）`ここでは、URLに[ `GET`](https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol#Request_methods）リクエストを送信するために`requests`を使用し、その後に結果を`response`変数に代入します。
 * [ `response.ok`](http://docs.python-requests.org/en/master/api/#requests.Response.ok）は、自分のリクエストが通過したかどうかを確認するために使用されます。すると、応答としてHTMLコンテンツが返されるか、何も応答なくエラーメッセージが出力されるかになります。
+* `for url in urls：`は、スクリプトの実行時に指定したURLのリストを使用し、各URLをループします。
+下に続くインデントしたコードブロックは、それぞれに実行され、各実行は、リスト内の各 `url`を使用して実行しています。
 
+* `try: ... except:` catches any kind of `Exception` or error, which allows us to handle it and our code will continue running. It would be best if we can specify the exceptions here so we can handle them individually. For now, we print it so we can find out what they might be.
 
-* `for url in urls：`は、スクリプトの実行時に指定したURLのリストを使用し、各URLをループします。その下にインデントコードブロックは、それぞれに実行され、各実行は、リスト内の各 `url`を使用しています。
 *「try：... except：」は、あらゆる種類の「例外」またはエラーをキャッチします。これにより、それを処理でき、コードの実行が継続されます。我々はそれらを個別に扱うことができるように、我々はここで例外を指定することができれば最高だろう。今のところ、それが何であるかを見つけることができるように、それを印刷します。
 *このブロック内で `get_url（）`を呼び出し、コンテンツがある場合は、今のところ印刷します。エラーがある場合、我々はまた、それを印刷します。
 
