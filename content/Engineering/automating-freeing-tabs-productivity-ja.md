@@ -133,28 +133,18 @@ for url in urls:
         print(e)
 ```
 
-
-* We call`get_url()` inside this block, and if there's content, we print it for now. If there's an error, we also print it.
-
 * `get_url（）`はURLを受け入れる関数で、スクリプトが参照しているページを確認するために表示します。
 * `requests.get（URL）`ここでは、URLに[ `GET`](https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol#Request_methods）リクエストを送信するために`requests`を使用し、その後に結果を`response`変数に代入します。
 * [ `response.ok`](http://docs.python-requests.org/en/master/api/#requests.Response.ok）は、自分のリクエストが通過したかどうかを確認するために使用されます。すると、応答としてHTMLコンテンツが返されるか、何も応答なくエラーメッセージが出力されるかになります。
 * `for url in urls：`は、スクリプトの実行時に指定したURLのリストを使用し、各URLをループします。
 下に続くインデントしたコードブロックは、それぞれに実行され、各実行は、リスト内の各 `url`を使用して実行しています。
-
-* `try: ... except:` catches any kind of `Exception` or error, which allows us to handle it and our code will continue running. It would be best if we can specify the exceptions here so we can handle them individually. For now, we print it so we can find out what they might be.
-
-*「try：... except：」は、あらゆる種類の「例外」またはエラーをキャッチします。これにより、それを処理でき、コードの実行が継続されます。我々はそれらを個別に扱うことができるように、我々はここで例外を指定することができれば最高だろう。今のところ、それが何であるかを見つけることができるように、それを印刷します。
-*このブロック内で `get_url（）`を呼び出し、コンテンツがある場合は、今のところ印刷します。エラーがある場合、我々はまた、それを印刷します。
-
+*「try：... except：」は、あらゆる種類の「例外」またはエラーをキャッチします。これにより、それを処理でき、コードの実行が継続されます。
+ここでいう例外を個別に扱うことができるように、指定することができれば最高だろう。
+今のところ、その例外が何であるかを見つけられるように、表示することにします。
+*このブロック内で `get_url（）`を呼び出し、コンテンツがある場合は、今のところは表示させます。エラーがある場合にも、表示させます。
 
 
-
-
-
-
-
-When we run this code, it just prints the HTML content from the page, or the error if any:
+このコードを実行すると、HTMLの内容をページから表示したり、もしエラーが有る場合にはそのエラーを表示するだけです。
 
 ```
 python kickstarter-watcher.py https://www.kickstarter.com/projects/1183795653/tracxcroll-change-your-trackball-to-the-scroller
@@ -165,17 +155,19 @@ Checking: https://www.kickstarter.com/projects/1183795653/tracxcroll-change-your
 ... (some hard-to-read HTML)
 ```
 
-What we need now is to make sense of the HTML content. We'll use `BeautifulSoup` for this.
+次に必要なのは、そのHTMLの内容が意味のあるものにすることです。
+それには、 `BeautifulSoup` を使います。
 
-### Using `BeautifulSoup`
+###  `BeautifulSoup`を使う
 
-To parse the HTML content, we'll use the `BeautifulSoup` library. In the command-line type:
+HTMLの内容の解析には、 `BeautifulSoup` ライブラリを使用します。
+コマンドラインにこう入力しましょう。
 
 ```
 pip install beautifulsoup4
 ```
 
-This is the library that helps us parse the HTML easier.
+これが、HTML解析をラクにしてくれるライブラリです。
 
 ```python
 import sys
