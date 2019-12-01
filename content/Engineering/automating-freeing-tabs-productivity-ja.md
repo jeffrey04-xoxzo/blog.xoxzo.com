@@ -219,18 +219,18 @@ for url in urls:
         print(e)
 ```
 
-* `from bs4 import BeautifulSoup as soup` imports `BeautifulSoup` and assigns it to the alias `soup`. I did this to make it easier to write.
-* `get_url()` was modified to return an instance of `BeautifulSoup` when successful.
-* `soup(response.content, 'html.parser')` is the `BeautifulSoup` instance mentioned earlier. We passed our HTML content to it and told it to use the HTML parser.
-* `check_earlybird()` function was added, it accepts the content, which is now a `BeautifulSoup` instance. Within this function, we find the specific HTML elements we're interested in.
-* `content.find_all()` and `content.find()` are methods provided by `BeautifulSoup` to make it easy to look for elements. CSS classes can be a good way to select elements because CSS has to be specific in targetting an element. I inspected the Kickstarter project page template to see what class names were used. You can find it as `class="name here"` within an HTML element.
-* The `sidebar` has many selectable pledge options so I use `find_all()` and it represents the HTML for the list of pledge options.
-* I loop through the `selectable` elements in the `sidebar` to find the title and the stats. From stats, I also get the limit and backer count.
-* `.text.strip()` is used on the `title` and `limit` to remove leading and trailing characters like spaces and new lines. I did two things here, which was to get the text, and the call `strip()` on it.
-* Then we check if `limited` is present, these early deals usually accommodate a fixed number of backers and is display as `Limited (N left of X)`
-* `.lower()` is used because we don't know the case the text is written in so we just make sure that everything is in lowercase.
+* `from bs4 import BeautifulSoup as soup`は`BeautifulSoup`をインポートし、エイリアス`soup`に割り当てます。 書きやすくするためにこうしてみました。
+* `get_url（）`は修正されて、成功時に `BeautifulSoup`のインスタンスを返すようになりました。
+* `soup（response.content、 'html.parser'）`は、前述の `BeautifulSoup`インスタンスです。 HTMLコンテンツを渡し、HTMLパーサーを使用するように指示しました。
+* `check_earlybird（）`関数が追加され、コンテンツを受け入れるようになりました。これは現在は `BeautifulSoup`インスタンスです。 この関数内で、興味のある特定のHTML要素を探します。
+* `content.find_all（）`と `content.find（）`は、要素の検索を容易にするために `BeautifulSoup`によって提供されるメソッドです。 CSSクラスは、要素を選択するのに適した方法です。CSSは、要素をターゲットに特定する必要があるためです。 Kickstarterプロジェクトページテンプレートを調べて、使用されたクラス名を確認しました。 HTML要素内で `class =" name here "`として探すことができます。
+* `sidebar`には選択可能な誓約オプションが多くあるため、` find_all（） `を使用し、誓約オプションのリストのHTMLを表します。
+* `sidebar`内で` selectable`要素をループして、タイトルと統計を見つけます。 統計から、limit と Backer の数も取得できます。
+* `.text.strip（）`は `title`と` limit`で使用され、スペースや改行などの先頭と末尾の文字を削除します。 ここで2つのことを行いました。テキストを取得し、その上で `strip（）`を呼び出しました。
+* 次に、`limited`が存在するかどうかを確認します。これらの初期取引は通常、一定数の支援者に対応し、`Limited（N left of X）`として表示されます。
+* `.lower（）`が使用されるのは、テキストが書かれているケースがわからないため、すべてが確実に小文字になるようにするためです。
 
-To run this script on a page we have to paste the URL of the project page :
+このスクリプトをページで実行するには、プロジェクトページのURLを貼り付ける必要があります。
 
 ```
 python kickstarter-watcher.py https://www.kickstarter.com/projects/1183795653/tracxcroll-change-your-trackball-to-the-scroller
@@ -241,19 +241,19 @@ Checking: https://www.kickstarter.com/projects/1183795653/tracxcroll-change-your
 Early Bird! - Limited (96 left of 150)
 ```
 
-Now that's what we're talking about!
+これぞ、お話していたことです！
 
-One last thing we can add in this script are notificationss. For example, when the phrase "Limited (1 left of" suddenly appears, it could mean that a previously full pledge package suddenly has an open slot. That's something I want to know right away.
+このスクリプトに最後に1つ追加するのが、通知です。 たとえば、"Limited（1 left of）"というフレーズが突然表示された場合、それまで満杯だった誓約パッケージに、突然空きスロットができたことを意味するかもしれません。それが、私が即座にに知りたいことです。
 
-### Using `xoxzo.cloudpy`
+### `xoxzo.cloudpy`　を使う
 
-To send notifications, we'll use our `xoxzo.cloudpy` library. In the command-line type:
+通知を送るには、 `xoxzo.cloudpy` ライブラリを使います。 コマンドラインにこうタイプします。
 
 ```
 pip install xoxzo.cloudpy
 ```
 
-This is our [Xoxzo client library](https://github.com/xoxzo/xoxzo.cloudpy) that helps us use SMS or even voice calls easily using the Xoxzo API.
+こちらが、SMSや、音声コールでさえも XoxzoのAPIを使って 簡単に行える　[Xoxzo クライアントライブラリ](https://github.com/xoxzo/xoxzo.cloudpy) です。
 
 ```python
 import sys
@@ -322,6 +322,7 @@ for url in urls:
 ```
 
 The event we're watching for could happen anytime and it would be best to get notified right away. In this case, SMS I would choose SMS as a medium so I can receive it ASAP.
+監視しているイベントはいつでも発生する可能性があるため、すぐに通知を受け取ることをお勧めします。 この場合、SMSメディアとしてSMSを選択し、できるだけ早く受信できるようにします。
 
 * `from xoxzo.cloudpy import XoxzoClient` here we import the client into our script
 * `send_notification()` function was added to use the Xoxzo client and send the message to the given number. To use the Xoxzo API, we need to [register an account](https://www.xoxzo.com/accounts/signup/) and get an API SID and TOKEN that we can use in our script.
